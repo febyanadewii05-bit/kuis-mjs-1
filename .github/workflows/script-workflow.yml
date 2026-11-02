@@ -23,28 +23,28 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Ensure script is executable
-        run: chmod +x scripts/my-script.sh
+        run: chmod +x scripts/myscript.sh
 
       # --- LINTING STAGE ---
       - name: Install ShellCheck (Linter)
         run: sudo apt-get update && sudo apt-get install -y shellcheck
 
       - name: Run ShellCheck on the script
-        run: shellcheck scripts/my-script.sh
+        run: shellcheck scripts/myscript.sh
 
       # --- SECURITY STAGE (using Flawfinder) ---
       - name: Install Flawfinder (SAST Tool)
         run: sudo apt-get install -y flawfinder
 
       - name: Run Flawfinder security scan on script
-        run: flawfinder scripts/my-script.sh
+        run: flawfinder scripts/myscript.sh
 
       # --- TESTING STAGE ---
       - name: Show test message
         run: echo "Running simple test assertion..."
 
       - name: Execute Test Script
-        run: ./scripts/my-script.sh
+        run: ./scripts/myscript.sh
 
   package-and-deploy:
     needs: build-and-test
